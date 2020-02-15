@@ -121,10 +121,11 @@
                     .Replace("9", "۹"); 
                     ۰ --}}
             <div class="row">
+                @foreach($all as $product)
                 <div class="col col1">
                     <div class="f_p_item">
                         <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-1.jpg')}}" alt="">
+                            <img class="img-fluid" src="app-assets/img/product/feature-product/{{$product->imagename}}" alt="">
                             <div class="p_icon">
                                 <a href="#">
                                     <i class="lnr lnr-heart"></i>
@@ -135,185 +136,16 @@
                             </div>
                         </div>
                         <a href="#">
-                            <h4>کفش‌های خاص</h4>
+                            <h4>{{$product->kala->name}}</h4>
                         </a>
-                        <h5>  از ۴۰۰،۰۰۰ تومان   </h5>
+                        <h5>  {{$product->kala->price}}   </h5>
                     </div>
                 </div>
-                <div class="col col2">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-2.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش پاشنه دار</h4>
-                        </a>
-                        <h5>از ۳۰۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-                <div class="col col3">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-3.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش دخترانه</h4>
-                        </a>
-                        <h5>از ۲۰۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-                <div class="col col4">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-4.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش اسپرت</h4>
-                        </a>
-                        <h5>از ۸۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-                <div class="col col5">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-5.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش لژدار</h4>
-                        </a>
-                        <h5>از ۲۳۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-
-                <div class="col col6">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-6.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش تخت</h4>
-                        </a>
-                        <h5>از ۱۲۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-
-                <div class="col col7">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-7.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش مجلسی</h4>
-                        </a>
-                        <h5>از ۴۰۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-
-                <div class="col col8">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-8.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش مردانه</h4>
-                        </a>
-                        <h5>از ۲۴۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-                <div class="col col9">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-9.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کتونی مردانه</h4>
-                        </a>
-                        <h5>از ۲۰۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
-                <div class="col col10">
-                    <div class="f_p_item">
-                        <div class="f_p_img">
-                            <img class="img-fluid" src="{{asset ('app-assets/img/product/feature-product/f-p-10.jpg')}}" alt="">
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="lnr lnr-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="lnr lnr-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <h4>کفش بندی</h4>
-                        </a>
-                        <h5>از ۱۰۰،۰۰۰ تومان   </h5>
-                    </div>
-                </div>
+                @endforeach
+                
+              
+         
+               
             </div>
 
             <div class="row">

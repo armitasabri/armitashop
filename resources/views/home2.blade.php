@@ -289,7 +289,7 @@
         <div class="box box-info">
           <div class="box-header">
             <i class="fa fa-info-circle"></i>
-            <h3 class="box-title">قالب AdminLTE فارسی ورژن 2.4.0</h3>
+            <h3 class="box-title"> دسترسی های ادمین</h3>
             <!-- tools box -->
             <div class="pull-left box-tools">
               <button type="button" class="btn bg-info btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -298,17 +298,10 @@
             <!-- /. tools -->
           </div>
           <div class="box-body">
-            <h5>این قالب به صورت html هست و برای بخش کنترل پنل و مدیریت سایت های مختلف مناسب می باشد.</h5>
-            <h5></h5>
-            <br><h5><b>ویژگی های قالب و تفاوت های آن با قالب اصلی:</b></h5>
-            <h5>۱- قالب به صورت کامل و حرفه ای فارسی و راست چین شده.</h5>
-            <h5>۲- انتخاب تاریخ به صورت شمسی یا دیتا پیکر توسط کتاب خانه باباخانی اضافه شده.</h5>
-            <h5>۳- ویرایشگر CK Editor فارسی و راست چین شده.</h5>
-            <h5>۴- ویرایشگر TinyMCE فارسی و راست چین شده و به قالب اضافه شده.</h5>
-            <h5>۵- همچنین فونت فارسی برای خوانایی بیشتر حروف و اعداد فارسی به قالب افزوده شد.</h5>
-            <br>
-            <h6><b></b></h6>
-            <h6><b></b></h6>
+          <a href="{{route('myuserstable.index')}}">مدیریت کاربران</a> <br> <br>
+          <a href="{{route('kalatables.index')}}">مدیریت کالاها</a> <br> <br>
+          <a href="{{route('commenttable.index')}}">مدیریت نظرها</a>
+         
           </div>
         </div>
       </section>

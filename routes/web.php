@@ -18,7 +18,10 @@ use App\Models\roles;
 
 // Route::get('/', function () {
 //     return view('welcome');
+  
 // });
+
+
 
 Route::get('/', 'frontController@index')->name('home');
 Route::get('/category', 'productController@index')->name('category');
@@ -27,7 +30,9 @@ Route::get('/product_checkout', 'productController@productcheckout')->name('prod
 Route::get('/shoppingcart', 'ShoppingcartController@index')->name('cart');
 Route::get('/addtoshoppingcart/{id}', 'ShoppingcartController@addkala')->name('addcart');
 Route::get('/confirmation', 'InvoiceController@index')->name('faktor');
-Route::get('/login', 'LoginController@index')->name('login');
+// Route::get('/login', 'LoginController@index')->name('login');
+// Route::get('/login', 'Auth\LoginController@checkusers');
+
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::get('/order_tracking', 'OrdertrackingController@index')->name('tracking');
 Route::get('/contact_with_us', 'frontcontroller@contact')->name('contact');
@@ -44,6 +49,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
     // Route::get('checkadmin/{id}', 'UserController');
     Route::get('alluserdatatabels', 'UserController@alluserdatatabels')->name('users.alluserdatatabels');
     Route::resource('/users', 'UserController');
+    
+
 
  });
 
@@ -67,3 +74,29 @@ Route::get('myuser/attach', function () {
 // });
 
 Route::get('/home2', 'HomeController@index2')->name('home2');
+
+Route::get('/nopermission', 'HomeController@accessdenied');
+
+
+/////////////////////admin product//////////////////////////////
+Route::resource('/kalatables', 'Admin\ProductController');
+Route::get('/updatekalatable/{id}', 'Admin\ProductController@updatekala');
+Route::post('updatekalatable/updated', 'Admin\ProductController@myupdate')->name('updated');
+Route::get('/deletekala/{id}', 'Admin\ProductController@destroy');
+Route::get('addkalatable', 'Admin\ProductController@addkala');
+
+
+
+////////////////////////////admin users/////////////////////////////
+Route::resource('/myuserstable', 'Admin\UserController');
+Route::get('/deleteuser/{id}', 'Admin\UserController@destroy');
+Route::post('/gotoupdateform/update', 'Admin\UserController@updateme');
+Route::get('/gotoupdateform/{id}', 'Admin\UserController@edit');
+
+
+//////////////////////////////admin comment/////////////////////////////////
+Route::resource('/commenttable', 'Admin\CommentController');
+Route::get('/deletecomment/{id}', 'Admin\CommentController@destroy');
+Route::get('/gotocommentform/{id}', 'Admin\CommentController@edit');
+Route::post('/gotocommentform/update', 'Admin\CommentController@updatecomment');
+

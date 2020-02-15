@@ -28,8 +28,11 @@ class LoginController extends Controller
     /**
      * Where to redirect users after login.
      *
+     * 
      * @var string
      */
+
+     
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
@@ -45,16 +48,16 @@ class LoginController extends Controller
 
     
 
-    // public function login_post(Request $request )
-    // {
+    public function login_post(Request $request )
+    {
        
-    //             $user = Auth::user();
+                $user = Auth::user();
                 
-    //             if ($user->roles->pluck( 'name' )->contains( 'admin' )) {
-    //                 return Redirect::to( '/admin-dashboard' );
-    //             }
+                if ($user->Roles->pluck( 'name' )->contains( 'admin' )) {
+                    return redirect( '/home2' );
+                }
                 
-    //             return Redirect::to( '/dashboard' );
-    //         }
+                return redirect( '/dashboard' );
+            }
        
 }

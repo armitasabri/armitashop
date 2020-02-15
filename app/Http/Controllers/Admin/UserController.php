@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\users;
+use App\Models\gender;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,7 +14,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-           $this->middleware('role');
+           $this->middleware('roless');
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +23,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $all=users::with('Gender')->get();
+        return view('users/userstable')->with('all',$all);
     }
 
     /**
@@ -30,8 +33,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {  $genders=gender::all();
+        return view('users.addusers')->with('allg',$genders);
     }
 
     /**
@@ -42,7 +45,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user=new users();
+        $user->id=$request->get('id');
+        $user->name=$request->get('name');
+        $user->username=$request->get('username');
+        $user->password=$request->get('password');
+        $user->email=$request->get('email');
+        $user->mobile=$request->get('mobile');
+        $usergender=$request->get('gender');
+        $g=gender::where('name',$usergender)->first();
+        $user->gender=$g->id;
+        $user->save();
+        return redirect('myuserstable');
     }
 
     /**
@@ -62,9 +76,11 @@ class UserController extends Controller
      * @param  \App\Models\users  $users
      * @return \Illuminate\Http\Response
      */
-    public function edit(users $users)
+    public function edit($id)
     {
-        //
+        $all=users::find($id);
+        $genders=gender::all();
+        return view('users/updateuserstable')->with('all',$all)->with('allg',$genders);
     }
 
     /**
@@ -74,9 +90,9 @@ class UserController extends Controller
      * @param  \App\Models\users  $users
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, users $users)
+    public function update(Request $request)
     {
-        //
+     
     }
 
     /**
@@ -85,8 +101,26 @@ class UserController extends Controller
      * @param  \App\Models\users  $users
      * @return \Illuminate\Http\Response
      */
-    public function destroy(users $users)
+    public function destroy($id)
     {
-        //
+        $user=users::find($id)->delete();
+        return redirect('myuserstable');
+    }
+
+    public function updateme(Request $request)
+    {   $id=$request->get('id');
+        $user=users::find($id);
+        $user->id=$request->get('id');
+        $user->name=$request->post('name');
+        $user->username=$request->get('username');
+        $user->email=$request->get('email');
+        $user->mobile=$request->get('mobile');
+        $usergender=$request->get('gender');
+        $g=gender::where('name',$usergender)->first();
+        $user->gender=$g->id;
+    //    dd($user); 
+       $user->save();
+        
+        return redirect('myuserstable');
     }
 }

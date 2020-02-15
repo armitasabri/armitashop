@@ -22,11 +22,18 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
+    { 
+        // echo "hi";die;
         return view('home');
     }
     public function index2()
     {
         return view('home2');
+    }
+
+    
+    public function accessdenied()
+    {
+        return view('forbidden');
     }
 }

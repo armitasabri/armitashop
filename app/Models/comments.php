@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class comments extends Model
 {
-    public function users(){
-        return $this->belongsTo('App\Models\users');
+    public function Users(){
+        return $this->belongsTo('App\Models\users','user_id','id');
     }
 
-    public function kala(){
-        return $this->belongsTo('App\Models\kala');
+    public function Kala(){
+        return $this->belongsTo('App\Models\kala','kala_id','id');
     }
 }

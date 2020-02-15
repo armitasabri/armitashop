@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\kala;
+use App\Models\images;
 class frontcontroller extends Controller
 {
     
     public function index(){
-        return view('home1');
+        $product=Images::with('Kala')->get();
+        // dd($product);die;
+        return view('home1')->with('all',$product);
     }
 
 

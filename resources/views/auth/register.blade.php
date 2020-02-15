@@ -26,6 +26,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('نام کاربری') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
+
+                                @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('آدرس پست الکترونیک') }}</label>
 
                             <div class="col-md-6">
@@ -36,6 +50,34 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="mobile" class="col-md-4 col-form-label text-md-right">{{ __('موبایل') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="mobile" type="text" min="11" class="form-control @error('mobile') is-invalid @enderror" name="mobile"  required >
+
+                                @error('mobile')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right control-label {{ $errors->has('gender') ? ' has-error' : '' }}">{{ __('جنسیت') }}</label>
+
+                            <div class="col-md-6">
+                                
+                                <input type="radio" name="gender"  value="1" required style="margin-left:3px;" required {{ (old('sex') == 'male') ? 'checked' : '' }}>مرد
+                                <input type="radio" name="gender"  value="2" required style="margin-left:3px;" required {{ (old('sex') == 'female') ? 'checked' : '' }}>زن
+                               
+                                @if ($errors->has('gender'))
+                                <span class="help-block">
+                                <strong>{{ $errors->first('gender') }}</strong>
+                                </span>
+                                @endif
                             </div>
                         </div>
 

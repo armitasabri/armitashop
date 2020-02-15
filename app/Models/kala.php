@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class kala extends Model
 {
     public $table = "kala";
-
-    public function category(){
-        return $this->belongsTo('App\Models\category');
+    public $timestamps=false;
+    public function Category(){
+        return $this->belongsTo('App\Models\category','categoryid','id');
     }
 
     public function Images(){
@@ -25,7 +25,7 @@ class kala extends Model
     }
 
 
-    public function comments(){
-        return $this->hasMany('App\Models\comments');
+    public function Comments(){
+        return $this->hasMany('App\Models\comments','id','kala_id');
     }
 }

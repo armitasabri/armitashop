@@ -32,6 +32,15 @@ class users extends Model
         return $this->hasMany('App\Models\takhfif');
     }
     public function comments(){
-        return $this->hasMany('App\Models\comments');
+        return $this->hasMany('App\Models\comments','id','user_id');
+    }
+    public function isAdmin(){
+
+        if(isset($this->Roles[0])&& $this->Roles[0]->name=="Administrator"){
+            return true;
+        }else
+        {
+            return false;
+        }
     }
 }

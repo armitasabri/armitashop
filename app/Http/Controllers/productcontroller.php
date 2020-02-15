@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\kala;
 use App\Models\images;
+use App\Models\comments;
 
 class productcontroller extends Controller
 {
@@ -15,7 +16,8 @@ class productcontroller extends Controller
     }
 
     public function productview(){
-        return view('product/singleproduct');
+            $comments=comments::all();
+        return view('product/singleproduct')->with('comments',$comments);
     }
 
     public function productcheckout(){
