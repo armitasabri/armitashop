@@ -11,8 +11,8 @@ class images extends Model
     public function Kala(){
         return $this->belongsTo('App\Models\kala','kalaid','id');
     }
-    public function getImagenameAttribute($value){
+    // public function getImagenameAttribute($value){
 
-        return "app-assets/img/product/feature-product/".$value;
-     }
+    //     return "app-assets/img/product/feature-product/".$value;
+    //  }
 }

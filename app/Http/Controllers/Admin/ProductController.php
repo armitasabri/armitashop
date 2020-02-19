@@ -133,9 +133,9 @@ class ProductController extends Controller
     }
 
     public function updatekala($id){
-
-        $product=images::with('Kala')->find($id);
-        // dd($product->kala->description);
+  
+        $product=images::with('Kala')->where('kalaid',$id)->first();
+        // dd($product);
         $allcategory=category::all();
 
         return view('kala.updatekala')->with('all',$product)->with('allcategory',$allcategory);

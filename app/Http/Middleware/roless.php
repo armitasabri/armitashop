@@ -25,7 +25,7 @@ class roless
         if($auth == false){
             return redirect ('/login');
         }else{
-            $user1 = Auth::user()->id;
+       $user1 = Auth::user()->id;
        $user = users::find($user1);
        $Mainadmin=users::find(21);
        $admin2=users::find(22);
@@ -41,6 +41,7 @@ class roless
         //    return redirect('/home2');
         }elseif($user->id===$admin3->id){
             return $next($request);
+            // return redirect('/home2');
             //  echo 'hi admin #3';
         }else{
             // abort(403);

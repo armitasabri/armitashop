@@ -28,9 +28,9 @@
             <a style="text-decoration:none;color:black" onclick="return confirm('Are you sure?')" href={{'deletekala/'.$product->kala->id}} >delete</a>
           </button> 
           <button type="button" style="background-color:skyblue;margin:2px">
-            <a style="text-decoration:none;color:black"  href={{'updatekalatable/'.$product->kala->id}} >update</a>
+            <a style="text-decoration:none;color:black"  href={{'updatekalatable/'.$product->kalaid}} >update</a>
           </button></th>
-          <td>{{$product->imagename}}</td>
+          <td> <img src="app-assets/img/product/feature-product/{{$product->imagename}}"  style="width:100px;height:100px"    /> </td>
           <td>{{$product->kala->num}}</td>
           <td>{{$product->kala->price}}</td>
           <td>{{$product->kala->Category['categoryname']}}</td>

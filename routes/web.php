@@ -73,7 +73,7 @@ Route::get('myuser/attach', function () {
 
 // });
 
-Route::get('/home2', 'HomeController@index2')->name('home2');
+Route::get('/home2', 'HomeController@index2')->name('home2')->middleware('roless');
 
 Route::get('/nopermission', 'HomeController@accessdenied');
 

@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 // use Illuminate\Contracts\Auth\Factory as Auth;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class LoginController extends Controller
 {
     /*
@@ -48,16 +50,25 @@ class LoginController extends Controller
 
     
 
-    public function login_post(Request $request )
-    {
+    // public function login_post(Request $request )
+    // {
        
-                $user = Auth::user();
+    //             $user = Auth::user();
                 
-                if ($user->Roles->pluck( 'name' )->contains( 'admin' )) {
-                    return redirect( '/home2' );
-                }
+    //             if ($user->Roles->pluck( 'name' )->contains( 'admin' )) {
+    //                 return redirect( '/home2' );
+    //             }
                 
-                return redirect( '/dashboard' );
-            }
+    //             return redirect( '/dashboard' );
+    //         }
+
+
+    protected function authenticated(Request $request, $user) {
+        if ($user->usertype == 1 || $user->usertype == 2  ||  $user->usertype == 3) {
+            return redirect('/home2');
+        } else {
+            return redirect('/home');
+        }
+   }
        
 }
