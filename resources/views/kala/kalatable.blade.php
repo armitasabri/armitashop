@@ -22,22 +22,32 @@
     </thead>
     <tbody>
         @foreach ($all as $product)
+         
+        {{-- {{dd($product->photos()->path)}} --}}
       <tr>
         <th scope="row">
            <button type="button" style="background-color:tomato;margin:2px">
-            <a style="text-decoration:none;color:black" onclick="return confirm('Are you sure?')" href={{'deletekala/'.$product->kala->id}} >delete</a>
+            <a style="text-decoration:none;color:black" onclick="return confirm('Are you sure?')" href={{'deletekala/'.$product->id}} >delete</a>
           </button> 
           <button type="button" style="background-color:skyblue;margin:2px">
-            <a style="text-decoration:none;color:black"  href={{'updatekalatable/'.$product->kalaid}} >update</a>
+            <a style="text-decoration:none;color:black"  href={{'updatekalatable/'.$product->id}} >update</a>
           </button></th>
-          <td> <img src="app-assets/img/product/feature-product/{{$product->imagename}}"  style="width:100px;height:100px"    /> </td>
-          <td>{{$product->kala->num}}</td>
-          <td>{{$product->kala->price}}</td>
-          <td>{{$product->kala->Category['categoryname']}}</td>
-          <td>{{$product->kala->description}}</td>
-          <td>{{$product->kala->name}}</td>
-          <td >{{$product->kala->id}}</td>
+        
+         
+        <td> 
+          @foreach ($product->photos as $p) 
+          <img src="app-assets/img/product/kalas/{{$p->path}}"  style="width:100px;height:100px"    />
+         @endforeach
+        </td>
+        
+          <td>{{$product->num}}</td>
+          <td>{{$product->price}}</td>
+          <td>{{$product->Category['categoryname']}}</td>
+          <td>{{$product->description}}</td>
+          <td>{{$product->name}}</td>
+          <td >{{$product->id}}</td>
       </tr>
+    
       @endforeach
     </tbody>
     

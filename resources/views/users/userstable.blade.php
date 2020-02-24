@@ -9,6 +9,7 @@
     <thead>
       <tr>
           <th scope="col">Update or delete</th>
+          <th scope="col">user avatar</th>
           <th scope="col">gender</th>
           <th scope="col">mobile</th>
           <th scope="col">email</th>
@@ -28,7 +29,12 @@
         @foreach ($all as $user)
       <tr>
         <th scope="row"> <button type="button" style="background-color:tomato;margin:2px"><a style="text-decoration:none;color:black" onclick="return confirm('Are you sure?')" href={{'deleteuser/'.$user->id}} >delete</a></button> <button type="button" style="background-color:skyblue;margin:2px"><a style="text-decoration:none;color:black"  href={{'gotoupdateform/'.$user->id}} >update</a></button></th>
-     <td>{{$user->Gender['name']}}</td> 
+      <td>
+        @foreach ($user->photos as $p) 
+        <img src="app-assets/img/usersavatar/{{$p->path}}" alt="avatars" style="width:40px">
+        @endforeach
+      </td>
+        <td>{{$user->Gender['name']}}</td> 
      <td>{{$user->mobile}}</td>
      <td>{{$user->email}}</td>
       <td>{{$user->username}}</td>

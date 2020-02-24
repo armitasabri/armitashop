@@ -3,9 +3,12 @@
 
 <!--================Home Banner Area =================-->
 
-    <!-- Slideshow container -->
-    <div class="slideshow-container-fluid" ">
-
+   <section>
+    <div class="container-fluid">
+        <div class="row">
+        
+             <div class="slideshow-container col-lg-8 mt-4" >
+        
         <!-- Full-width images with number and caption text -->
              <div class="mySlides fade">
               <div class="numbertext">1 / 5</div>
@@ -34,40 +37,49 @@
                     <img src="{{asset ('app-assets/img/banner/banner-bg4.jpg')}}" style="width:100%">
                     <div class="text">کاملترین کالکشن</div>
                   </div>
-                 <!-- Next and previous buttons -->
-                 {{-- <a class="prev" onclick="plusSlides(-1)" style="padding-right:900px;margin-bottom:30px">&#10094;</a>
-                 <a class="next" onclick="plusSlides(1)">&#10095;</a> --}}
-               </div>
+                  {{-- Next and previous buttons  --}}
+                <a class="prev" onclick="plusSlides(-1)" style="padding-right:53vw;margin-top:3vh">&#10094;</a>
+                 <a class="next" onclick="plusSlides(1)" style="margin-top:3vh;padding-right:2vw">&#10095;</a> 
                <br>
-
-               <!-- The dots/circles -->
-               {{-- <div style="text-align:center">
+               {{-- The dots/circles  --}}
+               <div style="text-align:right;padding-right:23vw;">
                  <span class="dot" onclick="currentSlide(1)"></span>
                  <span class="dot" onclick="currentSlide(2)"></span>
                  <span class="dot" onclick="currentSlide(3)"></span>
-               </div> --}}
-
-
-
-
-               {{-- <section class="home_banner_area">
-    <div class="overlay"></div>
-    <div class="banner_inner d-flex align-items-center">
-        <div class="container">
-            <div class="banner_content row">
-                <div class="offset-lg-2 col-lg-8">
-
-
-                    
-                    <h3>همیشه خوش استایل
-                        <br />همیشه به روز</h3>
-                    <p></p>
-                    <a class="white_bg_btn" href="#">مشاهده کالکشن</a>
+                 <span class="dot" onclick="currentSlide(4)"></span>
+                 <span class="dot" onclick="currentSlide(5)"></span>
+               </div>
+               
                 </div>
-            </div>
+               
+               
+        <div class="col-lg-4 mall">
+                  <img class="img-fluid" src="#"  style="width:100%;" alt="happy couple">
+                  <div class="content"  style="margin-top:60vh;background-color:gainsboro;">
+                   <a href="#" style="color:black">
+                     <h2>کتونی‌های خاص</h2>
+                    <p>همین حالا خرید کن!</p>  
+                   </a>
+                    
+                </div>
+           </div>
+
+
         </div>
+        
     </div>
-</section> --}}
+       
+   
+      
+
+   </section>
+ 
+        
+    
+    
+               
+         
+
 <!--================End Home Banner Area =================-->
 
 <!--================Hot Deals Area =================-->
@@ -77,7 +89,7 @@
             <div class="col-lg-6">
                 <div class="hot_deal_box">
                     <img class="img-fluid" src="{{asset('app-assets/img/product/hot_deals/deal1.jpg')}}" alt="">
-                    <div class="content">
+                    <div class="content ">
                         <h2>پرطرفدارهای این هفته</h2>
                         <p>همین حالا خرید کن!</p>
                     </div>
@@ -125,7 +137,7 @@
                 <div class="col col1">
                     <div class="f_p_item">
                         <div class="f_p_img">
-                            <img class="img-fluid" src="app-assets/img/product/feature-product/{{$product->imagename}}" alt="">
+                            <img class="img-fluid" src="app-assets/img/product/kalas/{{$product->fileimage}}" alt="">
                             <div class="p_icon">
                                 <a href="#">
                                     <i class="lnr lnr-heart"></i>
@@ -136,9 +148,16 @@
                             </div>
                         </div>
                         <a href="#">
-                            <h4>{{$product->kala->name}}</h4>
+                            <h4>{{$product->name}}</h4>
+                                 
+                            <h6>
+                                @foreach($product->Tags as $tag) 
+                           <a class="text-white" href="{{'search_with_tags/'.$tag->id}}"> <span class="badge badge-secondary">  {{$tag->name}}</span></a>
+                            @endforeach
+                        </h6>
+                            
                         </a>
-                        <h5>  {{$product->kala->price}}   </h5>
+                        <h5>  {{$product->price}}   </h5>
                     </div>
                 </div>
                 @endforeach
@@ -214,5 +233,6 @@
         </div>
     </div>
 </section>
+
 <!--================ End Subscription Area ================-->
 @endsection 

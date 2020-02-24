@@ -1,8 +1,10 @@
 <?php
 
-
+use App\Models\kala;
 use App\Models\users;
 use App\Models\roles;
+use App\Models\Photos;
+
 
 
 /*
@@ -30,12 +32,14 @@ Route::get('/product_checkout', 'productController@productcheckout')->name('prod
 Route::get('/shoppingcart', 'ShoppingcartController@index')->name('cart');
 Route::get('/addtoshoppingcart/{id}', 'ShoppingcartController@addkala')->name('addcart');
 Route::get('/confirmation', 'InvoiceController@index')->name('faktor');
-// Route::get('/login', 'LoginController@index')->name('login');
+Route::get('/login1', 'LoginController@index')->name('login');
 // Route::get('/login', 'Auth\LoginController@checkusers');
 
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::get('/order_tracking', 'OrdertrackingController@index')->name('tracking');
 Route::get('/contact_with_us', 'frontcontroller@contact')->name('contact');
+
+Route::get('/search_with_tags/{id}', 'frontcontroller@tagsearch');
 
 
 Auth::routes();
@@ -84,6 +88,10 @@ Route::get('/updatekalatable/{id}', 'Admin\ProductController@updatekala');
 Route::post('updatekalatable/updated', 'Admin\ProductController@myupdate')->name('updated');
 Route::get('/deletekala/{id}', 'Admin\ProductController@destroy');
 Route::get('addkalatable', 'Admin\ProductController@addkala');
+Route::post('/upload', 'Admin\ProductController@store');
+Route::post('updatekalatable/updatepic', 'Admin\ProductController@updatepic');
+Route::post('/updatekalatable/showme', 'Admin\ProductController@showss');
+
 
 
 
@@ -100,3 +108,22 @@ Route::get('/deletecomment/{id}', 'Admin\CommentController@destroy');
 Route::get('/gotocommentform/{id}', 'Admin\CommentController@edit');
 Route::post('/gotocommentform/update', 'Admin\CommentController@updatecomment');
 
+
+
+Route::get('/photos/{id}/belongto',function($id){
+
+  $photo=Photos::findOrFail($id);
+ return $image=$photo->imageable()->get();   //har axi ro bedid mige object moghabelesh chiye masalan male usere ya post ya...
+
+
+});
+
+Route::get('/read/tag/kala',function(){
+
+  $kala=kala::findOrFail(8);
+  foreach($kala->Tags as $tag){
+    echo $tag->name."<br>";
+  }
+ 
+
+});

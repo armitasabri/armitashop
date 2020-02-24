@@ -18,7 +18,8 @@ class ShoppingcartController extends Controller
 {
     
     public function index(){
-        return view('product/shoppingcart');
+        $basket=basket::all();
+        return view('product/shoppingcart')->with('shares',$basket);
     }
 
     public function addkala($id){

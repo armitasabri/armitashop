@@ -130,7 +130,7 @@
 </style>
 <body>
     <div class="form-style-10" >
-    <form method="POST" action="{{route('myuserstable.store')}}">
+    <form method="POST" action="{{route('myuserstable.store')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="section"><span>1</span>id & name</div>
             <div class="inner-wrap">
@@ -157,6 +157,8 @@
 			<div class="inner-wrap">
 			<label>Password <input id="password" type="password" name="password" value=""  required/></label>
 			<label>Confirm Password <input id="confirm_password" type="password" name="c_password" value="" required  /></label>
+			<br>
+				 <label for="">select user avatar <br> <input type="file" name="filename"> </label>
 		</div>
             <div class="button-section">
              <input type="submit" value="add" />

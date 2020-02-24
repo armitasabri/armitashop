@@ -130,7 +130,7 @@
 </style>
 <body>
     <div class="form-style-10" >
-    <form method="POST" action="{{'update'}}/?id={{$all->id}}">
+    <form method="POST" action="{{'update'}}/?id={{$all->id}}" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="section"><span>1</span>id & name</div>
             <div class="inner-wrap">
@@ -151,6 +151,8 @@
 			
 				 @endforeach 
 				 </select>
+				 <br>
+				 <label for="">select user avatar <br> <input type="file" name="filename"> </label>
             </div>
         
     

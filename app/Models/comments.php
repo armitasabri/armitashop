@@ -13,4 +13,8 @@ class comments extends Model
     public function Kala(){
         return $this->belongsTo('App\Models\kala','kala_id','id');
     }
+    public function tags()
+    {
+        return $this->morphtoMany("App\Models\Tags","taggable");
+    }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\kala;
 use App\Models\images;
 use App\Models\category;
+use App\Models\Photos;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -22,8 +23,9 @@ class ProductController extends Controller
     public function index()
     { 
     
-        $all=images::all();
-        
+        $all=kala::with('Photos')->get();
+
+        // dd($all);
         return view('kala.kalatable',compact(['all']));
     }
 
@@ -52,9 +54,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-         $image=new images();
+         
         $kala=new kala();
-        $kalaid=$kala->id=$request->get('id');
+        $kala->id=$request->get('id');
         $kala->name=$request->get('name');
         $kala->description=$request->get('description');
         $kalaa=$request->get('categoryid');
@@ -62,11 +64,23 @@ class ProductController extends Controller
         $kala->categoryid=$kalac->id;
         $kala->price=$request->get('price');
         $kala->num=$request->get('num');
-        $image->imagename=$request->get('imagename');
-        $image->kalaid=$kalaid;
+        $files=$request->file('file');
+        // dd($files);
+        if($files):
+            foreach($files as $file):
+            $imagename= $file->getClientOriginalName();
+            $file->move('app-assets/img/product/kalas',$imagename);
+            $kala->fileimage=$imagename;
+            $kala->Photos()->create([
+            'path'=>$imagename
+        ]);
+        endforeach;
         
-        $kala->save();
-        $image->save();
+           $kala->save(); 
+        endif;
+        
+        
+       
         return redirect('kalatables');
     }
 
@@ -76,9 +90,18 @@ class ProductController extends Controller
      * @param  \App\Models\kala  $kala
      * @return \Illuminate\Http\Response
      */
-    public function show(kala $kala)
-    {
-        //
+    public function showss(Request $request){ 
+        // echo 'pink';
+        $id=$request->get('imagename');
+        $all=Photos::where('path',$id)->first();
+        // dd($all);
+        $kala=kala::where('fileimage',$id)->first();
+        if($kala){
+             $flag=1;
+        }else{
+            $flag=0;
+        }
+        return view('kala.updatepicture')->with('all',$all)->with('flag',$flag);
     }
 
     /**
@@ -87,9 +110,9 @@ class ProductController extends Controller
      * @param  \App\Models\kala  $kala
      * @return \Illuminate\Http\Response
      */
-    public function edit(kala $kala)
+    public function edit()
     {
-        //
+        
     }
 
     /**
@@ -102,21 +125,18 @@ class ProductController extends Controller
     public function myupdate(Request $request)
     {
         $id=$request->get('id');
-        $user=kala::find($id);
-        $kalaid=$user->id=$request->get('id');
-        $user->name=$request->get('name');
-        $user->description=$request->get('description');
+        $kala=kala::find($id);
+        $kalaid=$kala->id=$request->get('id');
+        $kala->name=$request->get('name');
+        $kala->description=$request->get('description');
         $categoryid=$request->get('categoryid');
         $cat=category::where('categoryname',$categoryid)->first();
-        $user->categoryid=$cat->id;
-        $user->price=$request->get('price');
-        $user->num=$request->get('num');
-        $image=images::where('kalaid',$kalaid)->first();
-        // dd($image);
-        $image->imagename=$request->get('imagename');
-        $image->kalaid=$kalaid;
-        $image->save();
-        $user->save();
+        $kala->categoryid=$cat->id;
+        $kala->price=$request->get('price');
+        $kala->num=$request->get('num');
+        $image=$kala->fileimage;
+        $kala->fileimage=$image;
+        $kala->save();
         return redirect('kalatables');
     }
 
@@ -134,10 +154,29 @@ class ProductController extends Controller
 
     public function updatekala($id){
   
-        $product=images::with('Kala')->where('kalaid',$id)->first();
+        $product=kala::find($id);
         // dd($product);
         $allcategory=category::all();
 
         return view('kala.updatekala')->with('all',$product)->with('allcategory',$allcategory);
+      }
+
+
+      public function updatepic(Request $request){
+
+        $pid=$request->get('id');
+        $photo=Photos::find($pid);
+        $kid=$photo->imageable_id;
+      $path=$photo->path=$request->get('path');
+      $photo->save();
+      $kala=$request->get('checkkala');
+    
+      if($kala){
+          $kalaitem=kala::where('id',$kid)->first();
+      $kala=kala::find($kid);
+         $kala->fileimage=$path;
+         $kala->save();
+      }
+      return redirect('kalatables');
       }
 }

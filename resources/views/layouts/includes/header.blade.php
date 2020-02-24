@@ -21,7 +21,42 @@
 	<link rel="stylesheet" href="{{asset ('app-assets/css/style.css' )}}">
     <link rel="stylesheet" href="{{asset ('app-assets/css/responsive.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	
+
+	<script>
+		var slideIndex = 1;
+		showSlides(slideIndex);
+		
+		function plusSlides(n) {
+			showSlides(slideIndex += n);
+		}
+		
+		function currentSlide(n) {
+			showSlides(slideIndex = n);
+		}
+		
+		function showSlides(n) {
+			var i;
+			var slides = document.getElementsByClassName("mySlides");
+			var dots = document.getElementsByClassName("dot");
+			if (n > slides.length) {
+				slideIndex = 1
+			}
+			if (n < 1) {
+				slideIndex = slides.length
+			}
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			for (i = 0; i < dots.length; i++) {
+				dots[i].className = dots[i].className.replace(" active", "");
+			}
+			slides[slideIndex - 1].style.display = "block";
+			dots[slideIndex - 1].className += " active";
+		}
+		
+	</script>
 </head>
 
 <body>
@@ -56,7 +91,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="contact.html">
+							<a href="{{route('contact')}}">
 								تماس با ما
 							</a>
 						</li>
@@ -68,7 +103,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
-					<a class="navbar-brand logo_h" href="index.html">
+				<a class="navbar-brand logo_h" href="{{route('home1')}}">
                         <img src="{{asset ('app-assets/img/logo.png')}}" alt="">
                         {{-- <i class="fa fa-gratipay" aria-hidden="true"></i> --}}
 					</a>
@@ -84,7 +119,7 @@
 							<div class="col-lg-7 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right" >
 									<li class="nav-item active">
-										<a class="nav-link" href="index.html">خانه</a>
+										<a class="nav-link" href="{{route('home1')}}">خانه</a>
 									</li>
 									<li class="nav-item submenu dropdown" >
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"  aria-haspopup="true" aria-expanded="false">فروشگاه</a>
@@ -150,7 +185,7 @@
 									<hr>
 
 									<li class="nav-item">
-										<a href="#" class="icons">
+									<a href="{{route('cart')}}" class="icons">
 											<i class="fa fa-shopping-basket" aria-hidden="true"></i>										</a>
 									</li>
 

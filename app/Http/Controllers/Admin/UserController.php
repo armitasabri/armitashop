@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\users;
 use App\Models\gender;
+use App\Models\Photos;
+
 
 use Illuminate\Http\Request;
 
@@ -23,7 +25,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $all=users::with('Gender')->get();
+        $all=users::orderBy('id', 'DESC')->with('Gender')->get();
         return view('users/userstable')->with('all',$all);
     }
 
@@ -55,7 +57,19 @@ class UserController extends Controller
         $usergender=$request->get('gender');
         $g=gender::where('name',$usergender)->first();
         $user->gender=$g->id;
-        $user->save();
+        $fileimage=$request->file('filename');
+        if($fileimage){
+            $imagename=$fileimage->getClientOriginalName();
+            $fileimage->move('app-assets/img/usersavatar',$imagename);
+        $user->fileimage=$imagename;
+        $user->Photos()->create([
+            'path'=>$imagename
+        ]);
+        $user->save();    
+        }else{
+            echo "something goes wrong,try again!";
+        }
+        
         return redirect('myuserstable');
     }
 
@@ -119,8 +133,20 @@ class UserController extends Controller
         $g=gender::where('name',$usergender)->first();
         $user->gender=$g->id;
     //    dd($user); 
-       $user->save();
+    $fileimage=$request->file('filename');
+    if($fileimage){
+        $imagename= $fileimage->getClientOriginalName();
+        $fileimage->move('app-assets/img/usersavatar',$imagename);
+        $user->fileimage=$imagename;
+      $user->Photos()->create([
+          'path'=>$imagename
+      ]);
         
+     $user->save();
+    }else{
+            echo "try again!";
+        }
         return redirect('myuserstable');
-    }
+    
+}
 }

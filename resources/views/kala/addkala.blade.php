@@ -130,7 +130,7 @@
 </style>
 <body>
     <div class="form-style-10" >
-    <form method="post" action="{{route('kalatables.store')}}">
+    <form method="post" action="upload" id="upload" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="section"><span>1</span>id & name</div>
             <div class="inner-wrap">
@@ -153,18 +153,19 @@
                 
             </div>
         
-            <div class="section"><span>3</span>price and number</div>
+            <div class="section"><span>3</span>price,number and images </div>
                 <div class="inner-wrap">
 				<label>price <input id="password" type="text" name="price" value=""  /></label>
 				<label>number <input  type="text" name="num" value=""   /></label>
-				<label>kala image name <input  type="text" name="imagename" value=""  /></label>
+				
+               choose kala images<br> <input  type="file" name="file[]" multiple >
             </div>
             <div class="button-section">
              <input type="submit" value="add" />
             </div>
         </form>
         </div>
-
+  <div id="message"></div>
         
 		<script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/main.js"></script>
@@ -186,6 +187,22 @@ password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
         
         
+
+		var form=document.getElementById('upload')
+		var request=new XMLHttpRequest();
+		form.addEventListener('submit',function(e){
+			e.preventDefault();
+			var formdata= new FormData(form);
+			request.open('post','/upload');
+			request.addEventListener("load",transferComplete);
+			request.send(formdata);
+		});
+		function transferComplete(data){
+			response = JSON.parse(data.currentTarget.response);
+			if(response.success){
+				document.getElementById('message').innerHTML="successfully uploaded!";
+			}
+		}
         </script>
 </body>
 </html>

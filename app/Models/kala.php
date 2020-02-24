@@ -28,4 +28,12 @@ class kala extends Model
     public function Comments(){
         return $this->hasMany('App\Models\comments','id','kala_id');
     }
+
+    public function Photos(){
+        return $this->morphMany('App\Models\Photos','imageable');
+    }
+    public function Tags()
+    {
+        return $this->morphtoMany("App\Models\Tags","taggable");
+    }
 }

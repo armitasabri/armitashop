@@ -422,25 +422,27 @@ a {
 ============================================================================================ */
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 700px;
   position: relative;
-  margin: auto;
+  /* margin-left: 20vw; */
+  
 }
 
 /* Hide the images by default */
-/* .mySlides {
-  display:;
-} */
+.mySlides {
+  display:none;
+}
 
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
   position: absolute;
-  top: 10%;
-  width: auto;
+  top: 50%;
+  width: 500px;
   margin-top: -22px;
   padding: 16px;
   color: white;
+  /* background-color: #28d500; */
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
@@ -450,7 +452,7 @@ a {
 
 /* Position the "next button" to the right */
 .next {
-  right: 60px;
+  right: 0px;
   border-radius: 3px 0 0 3px;
 }
 
@@ -463,11 +465,12 @@ a {
 .text {
   color: black;
   background-color: rgba(255, 248, 220, 0.5);
-  font-size: 50px;
+  font-size: 32px;
   padding: 16px 2px;
   position: absolute;
   bottom: 28vh;
-  width: 100%;
+  margin-right:5vw;
+  width: 80%;
   text-align: center;
 }
 
@@ -486,7 +489,7 @@ a {
   height: 15px;
   width: 15px;
   margin: 0 2px;
-  background-color: #bbb;
+  background-color: pink;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
@@ -496,25 +499,30 @@ a {
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade;
-  -webkit-animation-duration: 10s;
+  -webkit-animation-duration: 1.5s;
   animation-name: fade;
-  animation-duration: 10s;
+  animation-duration: 1.5s;
 }
 
 @-webkit-keyframes fade {
-  from {opacity: .4}
+  from {opacity: .5}
   to {opacity: 1}
 }
 
 @keyframes fade {
-  from {opacity: .4}
+  from {opacity: .5}
   to {opacity: 1}
 }
 
 /*   ---------------------------------------------------*/
-
-.home_banner_area {
-  /* background: url(../img/banner/banner-bg.jpg) no-repeat center bottom; */
+.mall{
+  background-image:url(../img/banner/banner-2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* position: fixed; */
+}
+/* .home_banner_area {
+  background: url(../img/banner/banner-bg.jpg) no-repeat center bottom;
   background-size: cover;
   position: relative;
   z-index: 1;
@@ -560,7 +568,7 @@ a {
         font-size: 14px;
         box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.1); }
       .home_banner_area .banner_inner .banner_content .halemet_img {
-        text-align: right; }
+        text-align: right; } */
 
 .blog_banner {
   min-height: 780px;

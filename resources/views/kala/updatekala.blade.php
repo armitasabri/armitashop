@@ -130,23 +130,23 @@
 </style>
 <body>
     <div class="form-style-10" >
-    <form method="post" action="{{'updated'}}/?id={{$all->kala->id}}">
+		
+	<form method="post" action="{{'updated'}}/?id={{$all->id}}">
             {{ csrf_field() }}
             <div class="section"><span>1</span>id & name</div>
             <div class="inner-wrap">
-                <label>id <input type="text" name="id" value={{$all->kala->id}} /></label>
-                <label>kala name <input name="name" value={{$all->kala->name}} ></label>
+              <a href="{{'updatekalatable/updated/'.$id=$all->id}}>"><label>id <input type="text" name="id" value={{$all->id}} /></label></a>  
+                <label>kala name <input name="name" value={{$all->name}} ></label>
             </div>
         
             <div class="section"><span>2</span> description & category</div>
             <div class="inner-wrap">
-                <label>description <textarea type="text" name="description" value=""> {{$all->kala->description}}</textarea></label>
-                <label for="category" >categories </label>
+                <label>description <textarea type="text" name="description" value=""> {{$all->description}}</textarea></label>
 				
-				<select id="category" name="categoryid" value={{$all->kala->Category['categoryname']}} >
+				<label for="category" >categories </label>
+				<select id="category" name="categoryid" value={{$all->Category['categoryname']}} >
 					@foreach ($allcategory as $x)
 					<option  >{{$x->categoryname}}</option>
-			
 				 @endforeach 
 				 </select>
                 
@@ -154,37 +154,70 @@
         
             <div class="section"><span>3</span>price and number</div>
                 <div class="inner-wrap">
-				<label>price <input id="password" type="text" name="price" value="{{$all->kala->price}}"  /></label>
-				<label>number <input  type="text" name="num" value="{{$all->kala->num}}"   /></label>
-				<label>kala image <input  type="text" name="imagename" value={{$all->imagename}}   /></label>
-            </div>
-            <div class="button-section">
+				<label>price <input id="password" type="text" name="price" value="{{$all->price}}"  /></label>
+				<label>number <input  type="text" name="num" value="{{$all->num}}"   /></label>
+				<div class="button-section">
              <input type="submit" value="Update" />
             </div>
-        </form>
-        </div>
+			
+            </div>
+            
+		</form>
+		
+	
+	<form action="{{'showme'}}" method="POST">
+		{{ csrf_field() }}
 
+
+				<label>	kala image </label>
+	<select id="image" name="imagename" value="hiiii" >
+					@foreach ($all->photos as $p) 
+			<option>{{$p->path}}</option>	
+				@endforeach
+				</select>
+
+				<div class="button-section">
+					<input type="submit" value="select picture" />
+				   </div>
+	</form>
+	
+		
+		</div>
+		
+
+
+		<script src="{{asset ('app-assets/js/jquery-3.2.1.min.js')}}"></script>
+       
+	
         
-		<script src="js/jquery-3.3.1.min.js"></script>
-        <script src="js/main.js"></script>
-        
+		
+		
+
         <script>
         
-        var password = document.getElementById("password")
-  , confirm_password = document.getElementById("confirm_password");
+ 
+//       $('form').on('submit',function(e){
+// 	e.preventDefault();
+	
+//         var a = $("#phototoupdate").val();
+//         console.log(a);
+// 	$.ajax({
+//         url:  '{{ url('updatekalatable/updatepic') }}',
+//         dataType: 'json',
+//         type: "post",
+//         data: {
+//           photoid: a,
+//         },
+//         success: function(response, status) {
+//         //    alert("hi");
+//         },
+//         // error: function(XMLHttpRequest, textStatus, erroeThrown) {
+//         //   console.log('AJAX error:' + textStatus)
+//         // }
+//       });
+      
+// });
 
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
-        
-        
         </script>
 </body>
 </html>

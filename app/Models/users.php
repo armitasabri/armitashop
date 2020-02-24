@@ -43,4 +43,15 @@ class users extends Model
             return false;
         }
     }
+
+
+    public function Photos(){
+        return $this->morphMany('App\Models\Photos','imageable');
+    }
+    
+    public function tags()
+    {
+        return $this->morphtoMany("App\Models\Tags","taggable");
+    }
+    
 }
